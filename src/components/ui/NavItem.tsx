@@ -84,6 +84,9 @@ const NavItem = ({ isActive, isExpanded, onExpand, org }: props) => {
             key={route.href}
             className={cn(
               "w-full font-normal justify-start pl-10 mb-1",
+              pathname.endsWith(route.href) ||
+                (pathname.includes(`${route.href}/organization-members`) &&
+                  "bg-sky-500/10 text-sky-700 "),
               pathname === route.href && "bg-sky-500/10 text-sky-700 "
             )}
             variant={"ghost"}
