@@ -26,7 +26,7 @@ const FormButton = ({
   children,
   className,
   disabled,
-  variant,
+  variant = "primary",
   type = "submit",
   size = "sm",
 }: FormButtonProps) => {

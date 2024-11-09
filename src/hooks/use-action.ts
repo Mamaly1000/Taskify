@@ -50,5 +50,13 @@ export const useAction = <TInput, TOutput>(
     },
     [action, options]
   );
-  return { fieldErrors, error, data, isLoading, execute };
+  return {
+    fieldErrors,
+    error,
+    data,
+    isLoading,
+    execute,
+    setError,
+    setFieldErrors,
+  };
 };

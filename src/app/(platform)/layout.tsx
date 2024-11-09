@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export default function PlatformLayout({
@@ -5,5 +6,10 @@ export default function PlatformLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <ClerkProvider>{children}</ClerkProvider>;
+  return (
+    <ClerkProvider>
+      <Toaster />
+      {children}
+    </ClerkProvider>
+  );
 }
