@@ -79,7 +79,7 @@ const FormPopover = ({
               setError(undefined);
               setFieldErrors(undefined);
             }}
-            className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600 outline-none border-none outline-0 checked:outline-none"
+            className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600 outline-none border-none outline-0 checked:outline-none focus-visible:outline-none"
           >
             <X className="w-4 h-4" />
           </Button>

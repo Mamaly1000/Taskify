@@ -5,8 +5,7 @@ import { revalidatePath } from "next/cache";
 import { InputType, ReturnType } from "./types";
 import { auth } from "@clerk/nextjs/server";
 import { createSafeAction } from "@/lib/use-safe-action";
-import { createBoardSchema } from "./schema";
-import { redirect } from "next/navigation";
+import { createBoardSchema } from "./schema"; 
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
