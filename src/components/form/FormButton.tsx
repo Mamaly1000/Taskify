@@ -38,7 +38,7 @@ const FormButton = ({
       className={cn("", className)}
       variant={variant}
       type={type}
-      disabled={pending || disabled}
+      disabled={disabled || pending}
     >
       {children}
     </Button>
