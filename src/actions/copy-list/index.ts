@@ -36,23 +36,23 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       select: { order: true },
     });
     const lastOrderNumber = lastList ? lastList.order + 1 : 1;
+    const List_To_Copy_Has_Card = listToCopy.cards.length > 0;
     list = await db.list.create({
       data: {
         order: lastOrderNumber,
         title: `${listToCopy?.title} - Copy`,
         boardId: board.id,
-        cards:
-          listToCopy.cards.length > 0
-            ? {
-                createMany: {
-                  data: listToCopy.cards.map((card) => ({
-                    description: card.description,
-                    title: card.title,
-                    order: card.order,
-                  })),
-                },
-              }
-            : undefined,
+        cards: List_To_Copy_Has_Card
+          ? {
+              createMany: {
+                data: listToCopy.cards.map((card) => ({
+                  description: card.description,
+                  title: card.title,
+                  order: card.order,
+                })),
+              },
+            }
+          : undefined,
       },
       include: {
         cards: true,

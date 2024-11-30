@@ -11,9 +11,10 @@ import { List_with_Cards } from "@/types";
 
 interface ListHeaderProps {
   list: List_with_Cards;
+  onAddCard: () => void;
 }
 
-const ListHeader = ({ list }: ListHeaderProps) => {
+const ListHeader = ({ list, onAddCard }: ListHeaderProps) => {
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
 
@@ -95,7 +96,7 @@ const ListHeader = ({ list }: ListHeaderProps) => {
           {list.title}
         </div>
       )}
-      <ListOptions list={list} onAddCard={() => {}} />
+      <ListOptions list={list} onAddCard={onAddCard} />
     </div>
   );
 };
