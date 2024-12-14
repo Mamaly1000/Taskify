@@ -49,7 +49,7 @@ model List{
 model Card{
   id String @id @default(uuid()) @map("_id")
   title String
-  description String
+  description String?
   order Int
 
   createdAt DateTime @default(now())
