@@ -7,7 +7,11 @@ import {
   Droppable,
   DragDropContext,
   OnDragEndResponder,
-} from "@hello-pangea/dnd"; 
+} from "@hello-pangea/dnd";
+import { useAction } from "@/hooks/use-action";
+import { updateListOrder } from "@/actions/update-list-order";
+import { toast } from "sonner";
+import { updateCardOrder } from "@/actions/update-card-order";
 
 interface ListsContainerProps {
   boardId: string;
@@ -27,6 +31,23 @@ const ListsContainer = ({ boardId, lists }: ListsContainerProps) => {
     setOrderedLists(lists);
   }, [lists]);
 
+  const { execute: executeReOrderLists } = useAction(updateListOrder, {
+    onSuccess: () => {
+      toast.success("List Reordered!");
+    },
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+  const { execute: executeReOrderCards } = useAction(updateCardOrder, {
+    onSuccess: () => {
+      toast.success("Card Reordered!");
+    },
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+
   const onDragEnd: OnDragEndResponder<string> = (result) => {
     const { destination, source, type } = result;
     if (!destination) {
@@ -45,7 +66,8 @@ const ListsContainer = ({ boardId, lists }: ListsContainerProps) => {
         (card, index) => ({ ...card, order: index })
       );
       setOrderedLists(items);
-      // TODO => add server actions for list reordering
+      // add server actions for list reordering
+      executeReOrderLists({ boardId, items });
     }
     // if user moves a card
     if (type === "card") {
@@ -81,8 +103,13 @@ const ListsContainer = ({ boardId, lists }: ListsContainerProps) => {
         sourceList.cards = newReOrderedCards;
         setOrderedLists(newOrderedLists);
         // TODO => add server actions for cards reordering
-      } else {
-        // if user moves a card to another list
+        executeReOrderCards({
+          boardId: boardId,
+          items: newReOrderedCards,
+        });
+      }
+      // if user moves a card to another list
+      else {
         // remove card from the source list
         const [draggedCard] = sourceList.cards.splice(source.index, 1);
         // edit draggedCard new listId
@@ -99,7 +126,11 @@ const ListsContainer = ({ boardId, lists }: ListsContainerProps) => {
         });
 
         setOrderedLists(newOrderedLists);
-        // TODO => add server actions
+        // add server actions
+        executeReOrderCards({
+          boardId: boardId,
+          items: destinationList.cards,
+        });
       }
     }
   };
