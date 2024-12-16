@@ -1,5 +1,5 @@
 import BoardNavbar from "@/components/layouts/BoardNavbar";
-import { db } from "@/lib/db";
+import { db } from "@/lib/db"; 
 import { auth } from "@clerk/nextjs/server";
 import { startCase } from "lodash";
 import { redirect } from "next/navigation";
