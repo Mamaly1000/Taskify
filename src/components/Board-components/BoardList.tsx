@@ -15,6 +15,9 @@ const BoardList = async () => {
   }
   const maxLimit = await getAvailableLimit();
   const boards = await db.board.findMany({
+    where: {
+      orgId,
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -56,5 +59,3 @@ const BoardList = async () => {
 };
 
 export default BoardList;
-
-
