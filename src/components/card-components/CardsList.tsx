@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Card } from "@prisma/client";
 import React from "react";
-import { Draggable, Droppable } from "@hello-pangea/dnd";
+import { Droppable } from "@hello-pangea/dnd";
 import CardItem from "./CardItem";
 
 interface props {

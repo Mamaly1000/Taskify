@@ -36,6 +36,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       data: updatedCards,
     };
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return {
       error: "failed to Reorder!",
     };

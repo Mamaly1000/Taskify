@@ -4,7 +4,6 @@ import { InputType, ReturnType } from "./types";
 import { db } from "@/lib/db";
 import { createSafeAction } from "@/lib/use-safe-action";
 import { UpdateListOrder } from "./schema";
-import { revalidatePath } from "next/cache";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
@@ -42,6 +41,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       data: lists,
     };
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return {
       error: "failed to Reorder!",
     };

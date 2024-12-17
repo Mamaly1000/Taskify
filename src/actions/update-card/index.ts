@@ -38,6 +38,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       data: updatedCard,
     };
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return {
       error: "failed to update list!",
     };

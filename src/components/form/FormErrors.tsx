@@ -1,5 +1,4 @@
-"use client";
-import { XCircle } from "lucide-react";
+"use client"; 
 import React from "react";
 import Error from "../ui/Error";
 

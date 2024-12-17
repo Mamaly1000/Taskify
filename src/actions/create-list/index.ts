@@ -47,6 +47,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       data: newList,
     };
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return {
       error: "failed to create new list!",
     };

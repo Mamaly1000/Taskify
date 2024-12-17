@@ -4,18 +4,18 @@ import React from "react";
 import { Skeleton } from "./skeleton";
 import Image from "next/image";
 import { CreditCard } from "lucide-react";
-interface InfoProps {}
-const Info = ({}: InfoProps) => {
+
+const Info = () => {
   const { isLoaded, organization } = useOrganization();
   if (!isLoaded) {
-    return <Info.Skeleton />;
+    return <InfoSkeleton />;
   }
   return (
     <section className="flex items-center gap-x-4">
       <div className="relative w-[60px] h-[60px]">
         <Image
           fill
-          src={organization?.imageUrl!}
+          src={organization?.imageUrl || ""}
           alt="org image"
           className="rounded-md object-cover"
         />
@@ -35,7 +35,7 @@ const Info = ({}: InfoProps) => {
 
 export default Info;
 
-Info.Skeleton = function SkeletonInfo() {
+const InfoSkeleton = () => {
   return (
     <div className="flex items-center gap-x-4">
       <div className="w-[60px] h-[60px] relative">

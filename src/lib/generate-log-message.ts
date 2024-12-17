@@ -1,7 +1,7 @@
 import { ACTION, AuditLog } from "@prisma/client";
 
 export const generateLogMessage = (log: AuditLog): string => {
-  const { action, entityTitle, entityType, userName } = log;
+  const { action, entityTitle, entityType } = log;
   let message = "Unknown Log";
   switch (action) {
     case ACTION.CREATE:

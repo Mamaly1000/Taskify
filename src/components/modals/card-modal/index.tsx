@@ -4,9 +4,7 @@ import { UseCardModal } from "@/hooks/use-card-modal";
 import { fetcher } from "@/lib/fetcher";
 import { Card_with_List } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { LoaderCircle } from "lucide-react";
 import React from "react";
-import { toast } from "sonner";
 import CardModalHeader from "./header";
 import CardModalDescription from "./description";
 import CardModalActions from "./actions";
@@ -14,7 +12,7 @@ import { AuditLog } from "@prisma/client";
 import CardActivities from "./activities";
 
 const CardModal = () => {
-  const { isOpen, onClose, onOpen, id } = UseCardModal();
+  const { isOpen, onClose, id } = UseCardModal();
 
   const { data: cardData, isLoading: cardDataError } = useQuery<Card_with_List>(
     {

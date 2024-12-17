@@ -36,6 +36,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       entityType: ENTITY_TYPE.LIST,
     });
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return {
       error: "failed to delete the list!",
     };

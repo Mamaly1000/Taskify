@@ -12,7 +12,6 @@ import FormInput from "./FormInput";
 import FormButton from "./FormButton";
 import { createBoard } from "@/actions/create-board";
 import { useAction } from "@/hooks/use-action";
-import Error from "../ui/Error";
 import { toast } from "sonner";
 import FormPicker from "./FormPicker";
 import { useRouter } from "next/navigation";
@@ -36,7 +35,7 @@ const FormPopover = ({
   const closeRef = useRef<ElementRef<"button">>(null);
   const router = useRouter();
 
-  const { error, execute, fieldErrors, isLoading, setError, setFieldErrors } =
+  const { execute, fieldErrors, isLoading, setError, setFieldErrors } =
     useAction(createBoard, {
       onError: (error) => {
         toast.error(error);
@@ -93,12 +92,12 @@ const FormPopover = ({
             <FormInput
               disabled={isLoading}
               placeholder="my further project...."
-              errors={fieldErrors as any}
+              errors={fieldErrors}
               id="title"
               label="board title"
             />
           </div>
-          <FormButton children={"create"} className="w-full capitalize" />
+          <FormButton className="w-full capitalize">create</FormButton>
         </form>
       </PopoverContent>
     </Popover>

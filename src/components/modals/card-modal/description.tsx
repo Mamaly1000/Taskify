@@ -89,7 +89,7 @@ const CardModalDescription = ({
     setDescription(card?.description);
   }, [card?.description]);
 
-  if (isLoading || !card) return <CardModalDescription.Sleketon />;
+  if (isLoading || !card) return <CardModalDescriptionSleketon />;
   else
     return (
       <div className="flex items-start gap-x-3 w-full">
@@ -135,7 +135,7 @@ const CardModalDescription = ({
 
 export default CardModalDescription;
 
-CardModalDescription.Sleketon = () => {
+const CardModalDescriptionSleketon = () => {
   return (
     <div className="flex items-start gap-x-3 w-full">
       <Skeleton className="h-6 w-6 bg-neutral-200" />

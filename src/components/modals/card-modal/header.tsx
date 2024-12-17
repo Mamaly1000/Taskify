@@ -67,7 +67,7 @@ const CardModalHeader = ({
   };
 
   if (isLoading || !card) {
-    return <CardModalHeader.Sleketon />;
+    return <CardModalHeaderSleketon />;
   } else {
     return (
       <DialogTitle className="flex items-center gap-x-3 w-full mb-6">
@@ -95,7 +95,7 @@ const CardModalHeader = ({
 
 export default CardModalHeader;
 
-CardModalHeader.Sleketon = () => {
+const CardModalHeaderSleketon = () => {
   return (
     <div className="flex items-start gap-x-3 mb-6">
       <Skeleton className="h-6 w-6 mb-1 bg-neutral-200" />

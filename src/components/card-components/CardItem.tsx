@@ -1,6 +1,6 @@
 "use client";
 import { UseCardModal } from "@/hooks/use-card-modal";
-import { Draggable, DraggableProvided } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 import { Card } from "@prisma/client";
 import React from "react";
 interface props {

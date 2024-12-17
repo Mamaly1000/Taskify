@@ -62,6 +62,8 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       entityType: ENTITY_TYPE.BOARD,
     });
   } catch (error) {
+    console.log(`[Internall-error]`, error);
+
     return {
       error: "failed to create a new board!",
     };

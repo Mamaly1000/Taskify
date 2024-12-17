@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs/server"; 
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
 import ActivityItem from "./ActivityItem";
-import { Skeleton } from "./skeleton";
+import ActivityListSkeleton from "./ActivityListSkeleton";
 
 const ActivityList = async () => {
   const { userId, orgId } = auth();
@@ -22,7 +22,7 @@ const ActivityList = async () => {
     },
   });
   return (
-    <Suspense fallback={<ActivityList.Skeleton />}>
+    <Suspense fallback={<ActivityListSkeleton />}>
       <ol className="space-y-4 mt-4">
         <p className="hidden last:block text-xs text-center text-muted-foreground capitalize">
           no activity found inside this organization
@@ -36,19 +36,3 @@ const ActivityList = async () => {
 };
 
 export default ActivityList;
-
-ActivityList.Skeleton = () => {
-  return (
-    <ol className="space-y-4 mt-4">
-      <Skeleton className="w-[75%] h-14" />
-      <Skeleton className="w-[55%] h-14" />
-      <Skeleton className="w-[87%] h-14" />
-      <Skeleton className="w-[56%] h-14" />
-      <Skeleton className="w-[76%] h-14" />
-      <Skeleton className="w-[65%] h-14" />
-      <Skeleton className="w-[60%] h-14" />
-      <Skeleton className="w-[78%] h-14" />
-      <Skeleton className="w-[66%] h-14" />
-    </ol>
-  );
-};

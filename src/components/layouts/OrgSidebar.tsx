@@ -10,6 +10,7 @@ import { Plus } from "lucide-react";
 import { Accordion } from "../ui/accordion";
 import NavItem from "../ui/NavItem";
 import { OrganizationResource } from "@/types";
+import NavItemSkeleton from "../ui/NavItemSkeleton";
 
 interface props {
   storageKey?: string;
@@ -53,13 +54,13 @@ const OrgSidebar = ({ storageKey = "t-sidebar-state" }: props) => {
           <Skeleton className="h-10 w-10" />
         </div>
         <div className="space-y-2">
-          <NavItem.Skeleton />
-          <NavItem.Skeleton />
-          <NavItem.Skeleton />
-          <NavItem.Skeleton />
-          <NavItem.Skeleton />
-          <NavItem.Skeleton />
-          <NavItem.Skeleton />
+          <NavItemSkeleton />
+          <NavItemSkeleton />
+          <NavItemSkeleton />
+          <NavItemSkeleton />
+          <NavItemSkeleton />
+          <NavItemSkeleton />
+          <NavItemSkeleton />
         </div>
       </>
     );

@@ -10,17 +10,14 @@ interface BoardTitleFormProps {
   board: Board;
 }
 const BoardTitleForm = ({ board }: BoardTitleFormProps) => {
-  const { data, error, execute, fieldErrors, isLoading } = useAction(
-    updateBoard,
-    {
-      onSuccess: (data) => {
-        toast.success(`Board "${data.title}" updated!`);
-      },
-      onError: () => {
-        toast.error(`Board "${board.title}" failed to update!`);
-      },
-    }
-  );
+  const { execute, fieldErrors } = useAction(updateBoard, {
+    onSuccess: (data) => {
+      toast.success(`Board "${data.title}" updated!`);
+    },
+    onError: () => {
+      toast.error(`Board "${board.title}" failed to update!`);
+    },
+  });
 
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
@@ -63,7 +60,7 @@ const BoardTitleForm = ({ board }: BoardTitleFormProps) => {
         className="flex items-center gap-x-2 "
       >
         <FormInput
-          errors={fieldErrors as any}
+          errors={fieldErrors}
           id="title"
           className="text-lg font-bold px-[7px] py-2 h-8 bg-transparent outline-none focus-visible:ring-transparent focus-visible:outline-none border-white "
           onBlur={() => disbleEditing()}

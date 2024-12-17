@@ -4,7 +4,7 @@ import { List_with_Cards } from "@/types";
 import ListHeader from "./ListHeader";
 import CardForm from "../form/CardForm";
 import CardsList from "../card-components/CardsList";
-import { Draggable, Droppable } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 interface ListItemProps {
   list: List_with_Cards;
   index: number;

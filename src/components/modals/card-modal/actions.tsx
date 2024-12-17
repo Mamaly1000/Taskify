@@ -2,7 +2,6 @@
 import { copyCard } from "@/actions/copy-card";
 import { deleteCard } from "@/actions/delete-card";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useAction } from "@/hooks/use-action";
 import { UseCardModal } from "@/hooks/use-card-modal";
 import { Card_with_List } from "@/types";
@@ -10,6 +9,7 @@ import { Copy, Trash } from "lucide-react";
 import { useParams } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
+import CardModalActionsSkeleton from "./CardModalActionsSkeleton";
 
 const CardModalActions = ({
   card,
@@ -60,7 +60,7 @@ const CardModalActions = ({
   };
 
   if (isLoading || !card) {
-    return <CardModalActions.Skeleton />;
+    return <CardModalActionsSkeleton />;
   } else
     return (
       <div className="space-y-2 mt-2">
@@ -89,12 +89,3 @@ const CardModalActions = ({
 };
 
 export default CardModalActions;
-CardModalActions.Skeleton = () => {
-  return (
-    <div className="space-y-2 mt-2">
-      <Skeleton className="bg-neutral-200 w-20 h-4" />
-      <Skeleton className="bg-neutral-200 w-full h-8" />
-      <Skeleton className="bg-neutral-200 w-full h-8" />
-    </div>
-  );
-};

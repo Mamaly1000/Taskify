@@ -1,5 +1,5 @@
 import { ActionState } from "@/lib/use-safe-action";
-import { Card, List } from "@prisma/client";
+import { Card } from "@prisma/client";
 import { z } from "zod";
 import { UpdateCardOrder } from "./schema";
 

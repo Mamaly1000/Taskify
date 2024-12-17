@@ -3,7 +3,7 @@ import logoImage from "@/app/images/logo.png";
 import Link from "next/link";
 import Image from "next/image";
 
-const Logo = ({ className }: { className?: string }) => {
+const Logo = () => {
   return (
     <Link href={"/"}>
       <div className="hover:opacity-75  transition items-center gap-x-2 hidden md:flex ">

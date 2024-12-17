@@ -1,5 +1,5 @@
 import BoardNavbar from "@/components/layouts/BoardNavbar";
-import { db } from "@/lib/db"; 
+import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { startCase } from "lodash";
 import { redirect } from "next/navigation";
@@ -49,7 +49,7 @@ const BoardIdLayout = async ({
         backgroundImage: `url(${board.imageFullUrl})`,
       }}
     >
-      <BoardNavbar board={board} params={params} />
+      <BoardNavbar board={board} />
       <div className="absolute inset-0 bg-black/10" />
       <main className="relative pt-28 h-full">{children}</main>
     </div>

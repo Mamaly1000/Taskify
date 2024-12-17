@@ -26,6 +26,7 @@ export async function GET(
     });
     return NextResponse.json(cardsAuditLogs);
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

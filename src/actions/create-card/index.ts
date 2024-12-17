@@ -59,6 +59,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       data: newCard,
     };
   } catch (error) {
+    console.log(`[Internall-error]`, error);
     return {
       error: "failed to create new card!",
     };

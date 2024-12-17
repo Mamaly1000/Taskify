@@ -10,8 +10,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Activity, CreditCard, Layout, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "./button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "./button"; 
 
 interface props {
   isActive: boolean;
@@ -102,13 +101,4 @@ const NavItem = ({ isActive, isExpanded, onExpand, org }: props) => {
 
 export default NavItem;
 
-NavItem.Skeleton = function SkeletonNavItem() {
-  return (
-    <div className="flex items-center gap-x-2">
-      <div className="w-10 h-10 relative shrink-0">
-        <Skeleton className="h-full w-full absolute" />
-      </div>
-      <Skeleton className="h-10 w-full" />
-    </div>
-  );
-};
+
