@@ -6,6 +6,8 @@ import { InputType, ReturnType } from "./types";
 import { auth } from "@clerk/nextjs/server";
 import { createSafeAction } from "@/lib/use-safe-action";
 import { deleteListSchema } from "./schema";
+import { CreateAuditLog } from "@/lib/create-audit-log";
+import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
@@ -26,6 +28,12 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     }
     list = await db.list.delete({
       where: { id, boardId: board.id, board: { orgId } },
+    });
+    await CreateAuditLog({
+      action: ACTION.DELETE,
+      entityId: list.id,
+      entityTitle: list.title,
+      entityType: ENTITY_TYPE.LIST,
     });
   } catch (error) {
     return {

@@ -10,18 +10,30 @@ import { toast } from "sonner";
 import CardModalHeader from "./header";
 import CardModalDescription from "./description";
 import CardModalActions from "./actions";
+import { AuditLog } from "@prisma/client";
+import CardActivities from "./activities";
 
 const CardModal = () => {
   const { isOpen, onClose, onOpen, id } = UseCardModal();
-  const {
-    data: cardData,
-    error,
-    isLoading,
-  } = useQuery<Card_with_List>({
-    queryKey: ["card", id],
-    queryFn: () => fetcher(`/api/cards/${id}`),
+
+  const { data: cardData, isLoading: cardDataError } = useQuery<Card_with_List>(
+    {
+      queryKey: ["card", id],
+      queryFn: () => fetcher(`/api/cards/${id}`),
+      enabled: !!id,
+    }
+  );
+
+  const { data: cardAuditLogs, isLoading: cardAudotLogError } = useQuery<
+    AuditLog[]
+  >({
+    queryKey: ["card-audit-logs", id],
+    queryFn: () => fetcher(`/api/cards/${id}/logs`),
     enabled: !!id,
   });
+
+  const isLoading = cardDataError || cardAudotLogError;
+
   return (
     <Dialog onOpenChange={onClose} open={isOpen}>
       <DialogContent>
@@ -30,6 +42,7 @@ const CardModal = () => {
           <div className="col-span-3">
             <div className="w-full space-y-6">
               <CardModalDescription card={cardData} isLoading={isLoading} />
+              <CardActivities isLoading={isLoading} logs={cardAuditLogs} />
             </div>
           </div>
           <CardModalActions card={cardData} isLoading={isLoading} />

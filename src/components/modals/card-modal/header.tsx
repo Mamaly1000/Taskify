@@ -30,6 +30,9 @@ const CardModalHeader = ({
       queryclient.invalidateQueries({
         queryKey: ["card", data.id],
       });
+      queryclient.invalidateQueries({
+        queryKey: ["card-audit-logs", data.id],
+      });
       toast.success(`Card "${data.title}" updated!`);
     },
     onError: (err) => {
@@ -53,7 +56,7 @@ const CardModalHeader = ({
     const isNewTitle =
       !!card &&
       inputRef.current?.value.toLowerCase().trim() !==
-      card.title.toLowerCase().trim();
+        card.title.toLowerCase().trim();
     if (isNewTitle) {
       execute({
         boardId: params.boardId as string,
