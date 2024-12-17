@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Activity, CreditCard, Layout, Settings } from "lucide-react";
+import { Activity, Layout, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./button";
 
