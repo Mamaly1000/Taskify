@@ -5,8 +5,7 @@ import FormPopover from "../form/FormPopover";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { getAvailableLimit } from "@/lib/org-limit";
-import { MAX_FREE_BOARDS } from "@/constants/boards";
+import { getAvailableLimit } from "@/lib/org-limit"; 
 
 const BoardList = async () => {
   const { orgId } = auth();
