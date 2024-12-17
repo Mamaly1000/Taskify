@@ -8,7 +8,7 @@ import { createSafeAction } from "@/lib/use-safe-action";
 import { deleteBoardSchema } from "./schema";
 import { CreateAuditLog } from "@/lib/create-audit-log";
 import { ACTION, ENTITY_TYPE } from "@prisma/client";
-
+import { decrementAvailableCount } from "@/lib/org-limit";
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
   if (!userId || !orgId) {
@@ -26,6 +26,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         orgId,
       },
     });
+    await decrementAvailableCount();
     await CreateAuditLog({
       action: ACTION.DELETE,
       entityId: board.id,

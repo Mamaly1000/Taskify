@@ -1,16 +1,17 @@
-import React from "react";
 import Hint from "../ui/Hint";
 import { HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Board as BoardType } from "@prisma/client";
 import Link from "next/link";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../ui/skeleton"; 
 
 const Board = ({
   className,
   board,
   isSkeleton,
+  limit = 0,
 }: {
+  limit?: number;
   board?: BoardType;
   className?: string;
   isSkeleton?: boolean;
@@ -18,9 +19,10 @@ const Board = ({
   if (isSkeleton) {
     return <Skeleton className="w-full h-full p-2 aspect-video" />;
   }
+
   if (!board) {
     return (
-      <article
+      <div
         role="button"
         className={cn(
           "aspect-video relative h-full w-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition",
@@ -28,15 +30,15 @@ const Board = ({
         )}
       >
         <p className="capitalize text-sm">create new board</p>
-        <span className=" text-xs">5 remaining</span>
+        <span className=" text-xs">{limit} remaining</span>
         <Hint
           side="bottom"
-          description="free workspaces can have up to 5 open boards. for unlimited boards upgrade this workspace."
+          description={`free workspaces can have up to ${limit} open boards. for unlimited boards upgrade this workspace.`}
           sideOffset={40}
         >
           <HelpCircle className="absolute bottom-2 right-2 w-[14px] h-[14px]" />
         </Hint>
-      </article>
+      </div>
     );
   }
   return (

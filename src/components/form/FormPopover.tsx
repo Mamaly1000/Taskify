@@ -39,7 +39,7 @@ const FormPopover = ({
   const { error, execute, fieldErrors, isLoading, setError, setFieldErrors } =
     useAction(createBoard, {
       onError: (error) => {
-        toast.success(error);
+        toast.error(error);
       },
       onSuccess: (data) => {
         toast.success(`${data.title} board created!`);
@@ -99,7 +99,6 @@ const FormPopover = ({
             />
           </div>
           <FormButton children={"create"} className="w-full capitalize" />
-          {error ? <Error error={error} /> : null}
         </form>
       </PopoverContent>
     </Popover>

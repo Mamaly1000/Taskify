@@ -5,12 +5,15 @@ import FormPopover from "../form/FormPopover";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
+import { getAvailableLimit } from "@/lib/org-limit";
+import { MAX_FREE_BOARDS } from "@/constants/boards";
 
 const BoardList = async () => {
   const { orgId } = auth();
   if (!orgId) {
     return redirect("/select-org");
   }
+  const maxLimit = await getAvailableLimit();
   const boards = await db.board.findMany({
     orderBy: {
       createdAt: "desc",
@@ -27,17 +30,26 @@ const BoardList = async () => {
         {boards.map((board) => (
           <Board board={board} key={board.id} />
         ))}
-        <FormPopover sideOffset={10} side="right" className="sm:block hidden">
-          <Board className="sm:flex hidden" />
-        </FormPopover>
-        <FormPopover
-          sideOffset={5}
-          align="center"
-          side="top"
-          className="sm:hidden"
-        >
-          <Board className="sm:hidden" />
-        </FormPopover>
+        {!!(maxLimit < MAX_FREE_BOARDS) && (
+          <>
+            <FormPopover
+              sideOffset={10}
+              side="right"
+              className="sm:block hidden"
+            >
+              <Board limit={maxLimit} className="sm:flex hidden" />
+            </FormPopover>
+
+            <FormPopover
+              sideOffset={5}
+              align="center"
+              side="top"
+              className="sm:hidden"
+            >
+              <Board className="sm:hidden" limit={maxLimit} />
+            </FormPopover>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs/server";
-import { AuditLog } from "@prisma/client";
+import { auth } from "@clerk/nextjs/server"; 
 import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
 import ActivityItem from "./ActivityItem";
