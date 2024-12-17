@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Activity, CreditCard, Layout, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "./button"; 
+import { Button } from "./button";
 
 interface props {
   isActive: boolean;
@@ -38,11 +38,6 @@ const NavItem = ({ isActive, isExpanded, onExpand, org }: props) => {
       label: "Settings",
       icon: Settings,
       href: `/organization/${org.id}/settings`,
-    },
-    {
-      label: "Billing",
-      icon: CreditCard,
-      href: `/organization/${org.id}/billing`,
     },
   ];
 
@@ -100,5 +95,3 @@ const NavItem = ({ isActive, isExpanded, onExpand, org }: props) => {
 };
 
 export default NavItem;
-
-
