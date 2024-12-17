@@ -32,27 +32,19 @@ const BoardList = async () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {boards.map((board) => (
           <Board board={board} key={board.id} />
-        ))}
-        {!!(maxLimit < MAX_FREE_BOARDS) && (
-          <>
-            <FormPopover
-              sideOffset={10}
-              side="right"
-              className="sm:block hidden"
-            >
-              <Board limit={maxLimit} className="sm:flex hidden" />
-            </FormPopover>
+        ))} 
+        <FormPopover sideOffset={10} side="right" className="sm:block hidden">
+          <Board limit={maxLimit} className="sm:flex hidden" />
+        </FormPopover>
 
-            <FormPopover
-              sideOffset={5}
-              align="center"
-              side="top"
-              className="sm:hidden"
-            >
-              <Board className="sm:hidden" limit={maxLimit} />
-            </FormPopover>
-          </>
-        )}
+        <FormPopover
+          sideOffset={5}
+          align="center"
+          side="top"
+          className="sm:hidden"
+        >
+          <Board className="sm:hidden" limit={maxLimit} />
+        </FormPopover>
       </div>
     </div>
   );
